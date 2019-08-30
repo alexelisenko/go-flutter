@@ -63,6 +63,7 @@ func NewApplication(opt ...Option) *Application {
 func createResourceWindow(window *glfw.Window) (*glfw.Window, error) {
 	glfw.WindowHint(glfw.Decorated, glfw.False)
 	glfw.WindowHint(glfw.Visible, glfw.False)
+	glfw.WindowHint(glfw.StencilBits, 8);
 	resourceWindow, err := glfw.CreateWindow(1, 1, "", nil, window)
 	if err != nil {
 		return nil, errors.Wrap(err, "error creating the resource window")
@@ -105,7 +106,7 @@ func (a *Application) Run() error {
 		// using the Visible window hint, set its position and then show it.
 		glfw.WindowHint(glfw.Visible, glfw.False)
 	}
-
+	glfw.WindowHint(glfw.StencilBits, 8);
 	a.window, err = glfw.CreateWindow(a.config.windowInitialDimensions.width, a.config.windowInitialDimensions.height, "Loading..", monitor, nil)
 	if err != nil {
 		return errors.Wrap(err, "creating glfw window")
